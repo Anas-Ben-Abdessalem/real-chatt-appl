@@ -1,33 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/animations.css" />
 </head>
+
 <body>
-    <main>
+    <!--Animation-->
+    <div class="animation-container">
+        <div class="bubbles"></div>
+        <div class="bubbles"></div>
+        <div class="bubbles"></div>
+        <div class="bubbles"></div>
+        <div class="bubbles"></div>
+    </div>
+    <!--Animation-->
+
+    <div class="container">
         <header>
-            <p>Welcome to </p>
+            <p>Welcome to</p>
             <h1>Chatgate</h1>
-            <p>
-                Connect with everybody easily here 
-            </p>
+            <p>Connect with everybody easily here</p>
         </header>
-        <section>
-            <form action="">
-                <label for="email">Email</label>
-                <input name = "email" type="text">
-                <label for="password">password</label>
-                <input name = "password" type="text">
-                <button>
-                    login
-                </button>
-                <p>not yet registered?<a href="">create account</a></p>
-            </form>
-        </section>
-    </main>
+        <main>
+            <section>
+                <form action="">
+                    <label for="email">Email</label>
+                    <input id="email" type="text" />
+                    <label for="password">password</label>
+                    <input id="password" type="text" />
+                    <button>login</button>
+                    <p>not yet registered?<a href="">create account</a></p>
+                </form>
+            </section>
+        </main>
+    </div>
+    <script src="../js/script.js"></script>
 </body>
+
 </html>

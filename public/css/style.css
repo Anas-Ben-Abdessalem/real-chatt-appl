@@ -1,0 +1,120 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: ubuntu;
+    
+}
+
+:root {
+    --white:#fff;
+    --red:#ff5a70;
+    --blue:rgba(96, 220, 229,.7);
+    --orange:#ffa25a;
+    --green:#70ff5a;
+}
+
+body {
+    
+    color: #fff;
+}
+
+
+header {
+    font-weight: 500;
+    
+    background: #ff5a70;
+    color: #fff;
+    padding: 7vw;
+}
+
+header * {
+    padding-left: 12vw;
+}
+
+main {
+    
+    width: 100%;
+    
+}
+
+section {
+    width: 70%;
+    margin: 7vh auto;
+    background: var(--blue);
+    font-weight: 600;
+    padding: 2vw;
+    border-radius: 3px;
+}
+
+section * {
+    margin-bottom: 2vh;
+}
+
+section button  {
+    width: 100%;
+    padding: .5vh;  
+    font-weight: 600;
+    font-size: 1.2rem;  
+    border: 0;
+    background-color:var(--red) ;
+    color: #fff;
+}
+
+form {
+    width :80%;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+input {
+    margin-top: 1vh;
+    width: 100%;
+    outline: 0;
+    border:0;
+    padding: 3px;
+    
+}
+
+@media screen and (min-width:730px) {
+    .container{
+       height: 60vh;
+        width:70%;
+        margin: 20vh auto;
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        border-radius: 20px;
+       
+        overflow: hidden;
+    }
+    header {
+        
+        font-weight: 500;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+
+        background: #ff5a70;
+        color: #fff;
+        padding: 2vw;
+        
+    }
+    
+    header * {
+        padding-left: 2vw;
+    }
+    main {
+        background-color: var(--blue);
+    }
+    section {
+        width: 70%;
+    
+        margin: 10vh auto;
+        background-color: transparent;
+        font-weight: 600;
+        padding: 2vw;
+        
+    }
+    
+}
