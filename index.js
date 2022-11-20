@@ -13,7 +13,7 @@ app.get('/',(req,res) => {
 });
 
  //setting the server up
-app.listen(3000,'127.0.0.1',function() {
+app.listen(3000,'localhost',function() {
    console.log('Server Has Started\non 127.0.0.1 ')
 });
 
