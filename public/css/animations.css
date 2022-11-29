@@ -1,7 +1,6 @@
 body {
     min-height:100vh;
     height: 100%;
-    overflow: hidden;
     
 }
 
@@ -11,8 +10,7 @@ body {
     min-height: 100vh;
     top: 0;
     left: 0;
-
-
+    user-select: none;
     z-index: -10;
     width: 100%;
  

@@ -19,6 +19,9 @@
     --green:#70ff5a;
 }
 
+.alert {
+    color :#ff5a70;
+}
 body {
     
     color: #fff;

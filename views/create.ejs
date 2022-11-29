@@ -29,15 +29,26 @@
         </header>
         <main>
             <section>
-                <p class="alert"> <%= messages[0] %> </p>
-                <form action="/login" method="POST">
+                <form action="/create" method="post">
+                    <p>Note all inputs are required</p>
+                    
+                    <label for="name" >Name</label>
+                    <input id="name" type="text" name="name" required/>
+                    
+                    <label for="family-name">Family Name</label>
+                    <input id="family-name" name="lastName" type="text" required/>
+                    
+                    <label for="date">Date Of Birth</label>
+                    <input id="date" name="birthDate" type="date" required/>
+
                     <label for="email">Email</label>
-                  
-                        <input id="email" value="<%=messages[1]%>" name="email" type="text"  required/>
-                        <label for="password">password</label>
-                    <input id="password" name="password" type="password" required/>
-                    <button>login</button>
-                    <p>not yet registered?<a href="/create">create an account</a></p>
+                    <input id="email" type="text" name="email" required/>
+                    
+                    <label for="password">password</label>
+                    <input id="password" type="password" name="password" required/>
+                    
+                    <button>Submit</button>
+                    
                 </form>
             </section>
         </main>
