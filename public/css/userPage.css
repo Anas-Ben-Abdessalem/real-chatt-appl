@@ -1,0 +1,127 @@
+@font-face {
+    font-family: 'Ubuntu';
+    src: local('Ubuntu'), url('../fonts/Ubuntu-Regular.ttf');
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: ubuntu;
+    
+}
+
+:root {
+    --white:#fff;
+    --red:#ff5a70;
+    --blue:rgba(96, 220, 229,.7);
+    --orange:#ffa25a;
+    --green:#70ff5a;
+}
+
+
+header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 7fr 1fr 2fr;
+    background: var(--red);
+    color: var(--white);
+    padding: 1.7vh;
+}
+
+header>* {
+    text-align: center;
+    background: var(--blue);
+    padding: .8vh;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--white);
+
+}
+
+#chatgate {
+    grid-column: 1/2;
+    font-weight: 800;
+    font-size: 1.5rem;
+    border: 2px solid var(--white);
+    border-bottom:5px solid var(--white);
+}
+
+
+#messages {
+    grid-column: 3/4;
+    border-radius: 50%;
+    width: 6vw;
+    height: 6vw;
+}
+
+
+#logout {
+    grid-column: 4/5;
+}
+
+#logout .fa-sharp{
+    margin-left: .7vh;
+}
+
+main {
+    width: 100%;
+    background: #555;
+}
+
+aside {
+    width: 40%;
+
+    background: var(--blue);
+    height:100vh;
+    
+}
+
+
+.items{
+    display: flex;
+    align-items: center;
+    background-color: var(--blue);
+    color: var(--white);
+    width: 100%;
+    position: relative;
+
+}
+
+
+
+
+.items::before {
+    content:'';
+    position: absolute;
+    left:15%;
+    bottom:-1px;
+    background: var(--white); 
+    height: 3px;
+    width: 70%;
+}
+.items::after {
+    content:'';
+    position: absolute;
+    left:0;
+    bottom:0;
+    background: var(--white); 
+    height: 1px;
+    width: 100%;
+}
+
+
+.items img{
+    width: 6vw;
+    min-height: 6vw;
+    border-radius: 50%;
+    border: 2px solid var(--white);
+    background: var(--red);
+    margin: 2vw;
+}
+
+.usr-name {
+    display: inline-block;
+}

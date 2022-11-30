@@ -51,7 +51,6 @@ app.post('/login', async (req,res) => {
         
         if(valid){
             req.session.user_id = user._id;
-            console.log(req.session.user_id)
             res.redirect('/secret');
 
         }

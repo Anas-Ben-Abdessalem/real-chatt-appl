@@ -1,16 +1,33 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="/css/style.css" rel="stylesheet">
+        <link href="../css/userPage.css" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/ed9f9b4561.js" crossorigin="anonymous"></script>
+
     </head>
     <body>
-    <p style="color: black;">
+    <!-- <p style="color: black;">
         <%= name%>
         <%= lastName %>
         <%= String(birthDate).slice(0,15) %>
-    </p>
+    </p> -->
+
+    <header>
+        <span id="chatgate" >Chatgate</span>
+        <span id="messages"><i class="fa-sharp fa-solid fa-message"></i></span>
+        <span id="logout">logout <i class="fa-sharp fa-solid fa-arrow-right-from-bracket"></i></span>
+    </header>
+
+    <main>
+        <aside id="connected">
+            <div class="items"><img src="../media/index.png" alt="" class="profil"><p class="usr-name">Anas Ben Abdessalem</p></div>
+            <div class="items"><img src="../media/index.png" alt="" class="profil"><p class="usr-name">Anas Ben Abdessalem</p></div>
+            <div class="items"><img src="../media/index.png" alt="" class="profil"><p class="usr-name">Anas Ben Abdessalem</p></div>
+            <div class="items"><img src="../media/index.png" alt="" class="profil"><p class="usr-name">Anas Ben Abdessalem</p></div> 
+        </aside>
+    </main>
     </body>
 </html>
