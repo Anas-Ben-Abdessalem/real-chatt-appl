@@ -22,12 +22,45 @@
     </header>
 
     <main>
-        <aside id="connected">
-            <div class="items"><img src="../media/index.png" alt="" class="profil"><p class="usr-name">Anas Ben Abdessalem</p></div>
-            <div class="items"><img src="../media/index.png" alt="" class="profil"><p class="usr-name">Anas Ben Abdessalem</p></div>
-            <div class="items"><img src="../media/index.png" alt="" class="profil"><p class="usr-name">Anas Ben Abdessalem</p></div>
-            <div class="items"><img src="../media/index.png" alt="" class="profil"><p class="usr-name">Anas Ben Abdessalem</p></div> 
+        <aside id="people">
+            <% for (user of result) { %> 
+                <div class="items">
+                    <img src = "<%='../media/uploads/' + user.profile  %>" alt="" class="profil">
+                    <p class="usr-name"><%= user.name + ' ' + user.lastName %> </p>
+                </div>
+            <% } %> 
         </aside>
+
+        <section id="profile">
+            <figure id="image">
+                <img src = "<%='../media/uploads/' + profile  %>" alt="">
+                <figcaption><span id = "name"><%= name + ' ' + lastName %></span> </figcaption>
+            </figure>
+            
+        </section>
+        <section id="friends">
+
+        </section>
+
+        <script src=
+    "https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js">
+    </script>
+    <script>
+       
+        jQuery( function($) {
+            $('#people').on('scroll', function() {
+                if ($(this).scrollTop() +
+                    $(this).innerHeight() >= 
+                    $(this)[0].scrollHeight) {
+                    
+                    
+                    $('#people').append('<div id ="loader"><span class="throbber-loader"></span></div>')
+                    
+                 
+                }
+            });
+        });
+    </script>
     </main>
     </body>
 </html>

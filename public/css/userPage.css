@@ -8,6 +8,7 @@
     padding: 0;
     box-sizing: border-box;
     font-family: ubuntu;
+    color:var(--white)
     
 }
 
@@ -25,20 +26,20 @@ header {
     display: grid;
     grid-template-columns: 2fr 7fr 1fr 2fr;
     background: var(--red);
-    color: var(--white);
-    padding: 1.7vh;
+    padding: 1.7vw;
+
 }
 
 header>* {
     text-align: center;
     background: var(--blue);
-    padding: .8vh;
+    padding: 1vw;
     border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 2px solid var(--white);
-
+    min-height: 50px;
 }
 
 #chatgate {
@@ -55,6 +56,11 @@ header>* {
     border-radius: 50%;
     width: 6vw;
     height: 6vw;
+    min-height: 40px;
+    min-width: 40px;
+    margin: auto 10px;
+    
+
 }
 
 
@@ -63,29 +69,31 @@ header>* {
 }
 
 #logout .fa-sharp{
-    margin-left: .7vh;
+    margin-left: 5px;
 }
 
 main {
     width: 100%;
+    display: flex;
     background: #555;
 }
 
 aside {
     width: 40%;
-
-    background: var(--blue);
-    height:100vh;
-    
+    border-right: 2px solid rgba(255, 255, 255,.5) ;
+    background: #777;
+    height: 100vh;
+    overflow-y: scroll;
 }
 
 
 .items{
     display: flex;
     align-items: center;
-    background-color: var(--blue);
+    background: #777;
     color: var(--white);
     width: 100%;
+    font-size: 80%;
     position: relative;
 
 }
@@ -101,9 +109,12 @@ aside {
     background: var(--white); 
     height: 3px;
     width: 70%;
+    z-index: 1;
+    box-shadow: 4px 4px 5px var(--red);
 }
 .items::after {
     content:'';
+    
     position: absolute;
     left:0;
     bottom:0;
@@ -124,4 +135,107 @@ aside {
 
 .usr-name {
     display: inline-block;
+
 }
+
+#profile {
+    display: inline;
+    width: 60%;
+    background: var(--blue);
+}
+
+#image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 1.2rem ;
+}
+
+
+#image img { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    width:30vw;
+    height: 30vw;
+    border-radius: 50%;
+
+}
+
+#loader {
+    display: flex;
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Animations */
+@-moz-keyframes throbber-loader {
+    0% {
+      background: #dde2e7;
+    }
+    10% {
+      background: #6b9dc8;
+    }
+    40% {
+      background: #dde2e7;
+    }
+  }
+  @-webkit-keyframes throbber-loader {
+    0% {
+      background: #dde2e7;
+    }
+    10% {
+      background: #6b9dc8;
+    }
+    40% {
+      background: #dde2e7;
+    }
+  }
+  @keyframes throbber-loader {
+    0% {
+      background: #dde2e7;
+    }
+    10% {
+      background: #6b9dc8;
+    }
+    40% {
+      background: #dde2e7;
+    }
+  }
+  /* :not(:required) hides these rules from IE9 and below */
+  .throbber-loader:not(:required) {
+    -moz-animation: throbber-loader 2000ms 300ms infinite ease-out;
+    -webkit-animation: throbber-loader 2000ms 300ms infinite ease-out;
+    animation: throbber-loader 2000ms 300ms infinite ease-out;
+    background: #dde2e7;
+    display: inline-block;
+    position: relative;
+    text-indent: -9999px;
+    width: 0.9em;
+    height: 1.5em;
+    margin: 0 1.6em;
+  }
+  .throbber-loader:not(:required):before, .throbber-loader:not(:required):after {
+    background: #dde2e7;
+    content: '\x200B';
+    display: inline-block;
+    width: 0.9em;
+    height: 1.5em;
+    position: absolute;
+    top: 0;
+  }
+  .throbber-loader:not(:required):before {
+    -moz-animation: throbber-loader 2000ms 150ms infinite ease-out;
+    -webkit-animation: throbber-loader 2000ms 150ms infinite ease-out;
+    animation: throbber-loader 2000ms 150ms infinite ease-out;
+    left: -1.6em;
+  }
+  .throbber-loader:not(:required):after {
+    -moz-animation: throbber-loader 2000ms 450ms infinite ease-out;
+    -webkit-animation: throbber-loader 2000ms 450ms infinite ease-out;
+    animation: throbber-loader 2000ms 450ms infinite ease-out;
+    right: -1.6em;
+  }

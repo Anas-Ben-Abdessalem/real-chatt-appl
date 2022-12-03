@@ -9,6 +9,7 @@
   "author": "Anas Ben Abdessalem",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.2.0",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
     "connect-flash": "^0.1.1",

@@ -72,7 +72,7 @@ app.post('/create', async (req,res) => {
         req.flash('fail', email);
         res.redirect('/login');
     }else{
-        const user = new User({name, lastName, birthDate, email, password});
+        const user = new User({name, lastName, birthDate, email, password, registerDate:new Date()});
         await user.save();
         req.session.user_id = user._id;
         res.redirect('/secret');
@@ -83,8 +83,24 @@ app.post('/create', async (req,res) => {
 app.get('/secret', async (req,res) => {
     if(req.session.user_id){
         let user =  await User.findOne({'_id':req.session.user_id});
-        const { name, lastName, birthDate, ...others } = user
-        res.render('userPage',{ name, lastName, birthDate})
+        const { name, lastName, birthDate, profile, ...others } = user;
+       //rendering 10 PEOPLE
+
+        let result = await User.aggregate([
+            {
+                $sort:{
+                    registerDate: -1
+                }
+            },
+            {
+                $facet: {
+                    totalUsers: [{$count: "email"}],
+                    data:[{ $skip: 0 }, { $limit: 20 }]
+                }
+            }
+        ])
+        result = result[0].data;
+        res.render('userPage',{ name, lastName, birthDate, profile, result})
     }else{
         res.redirect('/')
     }

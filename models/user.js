@@ -14,6 +14,10 @@ const userSchema = new mongoose.Schema({
         type:Date,
         required:true
     },
+    registerDate:{
+        type:Date,
+        required:true
+    },
     email: {
         type: String,
         required: true,
@@ -24,6 +28,10 @@ const userSchema = new mongoose.Schema({
         minlength:8,
         required: true,
         unique: true
+    },
+    profile:{
+        type:String,
+        default: 'defaultImage.png'
     }
 });
 
