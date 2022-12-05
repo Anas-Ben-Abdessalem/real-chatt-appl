@@ -21,7 +21,7 @@
 }
 
 
-header {
+body>header {
     width: 100%;
     display: grid;
     grid-template-columns: 2fr 7fr 1fr 2fr;
@@ -30,7 +30,7 @@ header {
 
 }
 
-header>* {
+body>header>* {
     text-align: center;
     background: var(--blue);
     padding: 1vw;
@@ -83,7 +83,50 @@ aside {
     border-right: 2px solid rgba(255, 255, 255,.5) ;
     background: #777;
     height: 100vh;
-    overflow-y: scroll;
+    transition:1s;
+    overflow:auto;
+}
+
+
+aside>header {
+  position: sticky;
+  top: 0;
+  background-color: inherit;
+  right: 0;
+  z-index: 2;
+  box-shadow: 4px 4px 5px #555 ;
+
+  
+}
+
+h1 {
+  margin: 10px;
+  padding: 5px;
+  display: inline-block;
+  position: relative;
+
+}
+
+h1::before {
+  content:'';
+  position: absolute;
+  left:15%;
+  bottom:-1px;
+  background: var(--white); 
+  height: 3px;
+  width: 70%;
+  z-index: 1;
+  box-shadow: 4px 4px 5px var(--red);
+}
+h1::after {
+  content:'';
+  
+  position: absolute;
+  left:0;
+  bottom:0;
+  background: var(--white); 
+  height: 1px;
+  width: 100%;
 }
 
 
@@ -93,6 +136,7 @@ aside {
     background: #777;
     color: var(--white);
     width: 100%;
+    
     font-size: 80%;
     position: relative;
 
@@ -238,4 +282,24 @@ aside {
     -webkit-animation: throbber-loader 2000ms 450ms infinite ease-out;
     animation: throbber-loader 2000ms 450ms infinite ease-out;
     right: -1.6em;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    visibility: hidden;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }

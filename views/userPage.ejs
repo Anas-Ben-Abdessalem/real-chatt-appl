@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title></title>
+        <title><%= name + ' ' + lastName  %> </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="../css/userPage.css" rel="stylesheet">
+        
         <script src="https://kit.fontawesome.com/ed9f9b4561.js" crossorigin="anonymous"></script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.js"
+         integrity="sha512-nNH8gXanGmEPnnK9/yhI3ETaIrujVVJ7dstiVIwMtcfbcj1zzTlnH5whbsYhg6ihg5mFe1xNkPPLwCwwvSAUdQ==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     </head>
     <body>
     <!-- <p style="color: black;">
@@ -23,12 +26,16 @@
 
     <main>
         <aside id="people">
-            <% for (user of result) { %> 
-                <div class="items">
-                    <img src = "<%='../media/uploads/' + user.profile  %>" alt="" class="profil">
-                    <p class="usr-name"><%= user.name + ' ' + user.lastName %> </p>
-                </div>
-            <% } %> 
+            <header> <h1>People</h1></header> 
+            <div id="users-container">
+                <% for (user of result) { %> 
+                    <div class="items">
+                        <img src = "<%='../media/uploads/' + user.profile  %>" alt="" class="profil">
+                        <p class="usr-name"><%= user.name + ' ' + user.lastName %> </p>
+                    </div>
+                
+                <% } %> 
+            </div>
         </aside>
 
         <section id="profile">
@@ -47,19 +54,44 @@
     </script>
     <script>
        
-        jQuery( function($) {
-            $('#people').on('scroll', function() {
-                if ($(this).scrollTop() +
-                    $(this).innerHeight() >= 
-                    $(this)[0].scrollHeight) {
+    jQuery(async function($) {
+    let skip = 15;
+    let dbLength;
+    $("#people").append('<div id ="loader"><span class="throbber-loader"></span></div>');
+    let observer = new IntersectionObserver(async function(entry) {
+	// isIntersecting is true when element and viewport are overlapping
+	// isIntersecting is false when element and viewport don't overlap
+            if(entry[0].isIntersecting === true) {
+
+                 await setTimeout(async function() { 
+                    let data = await axios.get(`http://localhost:3000/moreUsers?skip=${skip}`);
+                    let dbLength = data.data.total;
+                    data = data.data.result;                    
+                        for (item of data){
+                            $("#users-container").append(
+                                '<div class="items">'+
+                                    '<img src ="../media/uploads/' + item.profile  +'" class="profil">'+
+                                    '<p class="usr-name">' + item.name + ' ' + item.lastName +' </p>'+
+                                '</div>'
+                            );
+                        }
+                    if( skip> dbLength && $('.items').last().text != 'All users are loaded') {
+                        $("#loader").remove()
+                        $('#people').append('<p class = "items">All users are loaded</p>')
+                    }
                     
-                    
-                    $('#people').append('<div id ="loader"><span class="throbber-loader"></span></div>')
-                    
-                 
-                }
-            });
-        });
+                    skip+=10
+
+                },100);
+
+
+
+            }            
+        }, { threshold: [1] });
+        await observer.observe(document.querySelector(".throbber-loader"));
+               
+    });
+        
     </script>
     </main>
     </body>

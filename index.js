@@ -95,19 +95,53 @@ app.get('/secret', async (req,res) => {
             {
                 $facet: {
                     totalUsers: [{$count: "email"}],
-                    data:[{ $skip: 0 }, { $limit: 20 }]
+                    data:[{ $skip: 0 }, { $limit: 15 }]
                 }
             }
-        ])
+        ]);
+        let dbL = result[0].totalUsers[0].email
+
         result = result[0].data;
-        res.render('userPage',{ name, lastName, birthDate, profile, result})
+        res.render('userPage',{ name, lastName, birthDate, profile, result,dbL})
     }else{
         res.redirect('/')
     }
 });
 
+
+app.get('/moreUsers', async (req,res) => {
+    
+    let result = await User.aggregate([
+        {
+            $sort:{
+                registerDate: -1
+            }
+        },
+        {
+            $facet: {
+                totalUsers: [{$count: "email"}],
+                data:[{ $skip:  Number(req.query.skip) }, { $limit: 10 }]
+            }
+        }
+    ]);
+    let total = result[0].totalUsers[0].email; 
+
+
+    result = result[0].data;
+    let lst = [];
+    for (item of result){
+        lst.push({ 
+            name : item.name,
+            lastName : item.lastName,
+            profile : item.profile
+          });
+    };
+    result = lst;
+    res.json({result:result, total:total});
+});
+
  //setting the server up
 app.listen(3000,'localhost',function() {
-   console.log('Server Has Started\non 127.0.0.1 ')
+   console.log('Server Has Started\non localhost')
 });
 
