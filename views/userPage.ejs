@@ -4,7 +4,7 @@
         <title><%= name + ' ' + lastName  %> </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="../css/userPage.css" rel="stylesheet">
+        <link href="/css/userPage.css" rel="stylesheet">
         
         <script src="https://kit.fontawesome.com/ed9f9b4561.js" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.0/axios.js"
@@ -21,7 +21,12 @@
     <header>
         <span id="chatgate" >Chatgate</span>
         <span id="messages"><i class="fa-sharp fa-solid fa-message"></i></span>
-        <span id="logout">logout <i class="fa-sharp fa-solid fa-arrow-right-from-bracket"></i></span>
+        <span id="drop-down">  
+            <i class="fa-solid fa-caret-down"></i> 
+            <i class="fa-solid fa-square-caret-down"></i>
+                </span>
+        <!-- <span id="logout">logout <i class="fa-sharp fa-solid fa-arrow-right-from-bracket"></i></span> -->
+
     </header>
 
     <main>
@@ -30,7 +35,7 @@
             <div id="users-container">
                 <% for (user of result) { %> 
                     <div class="items">
-                        <img src = "<%='../media/uploads/' + user.profile  %>" alt="" class="profil">
+                        <img src = "<%='/media/uploads/' + user.profile  %>" alt="" class="profil">
                         <p class="usr-name"><%= user.name + ' ' + user.lastName %> </p>
                     </div>
                 
@@ -39,11 +44,31 @@
         </aside>
 
         <section id="profile">
-            <figure id="image">
-                <img src = "<%='../media/uploads/' + profile  %>" alt="">
-                <figcaption><span id = "name"><%= name + ' ' + lastName %></span> </figcaption>
-            </figure>
-            
+           
+            <% if (includeEdit) { %>
+                <figure id="image">
+                        <img src = "<%='/media/uploads/' + profile  %>" alt="">
+                        <figcaption><span id = "name"><%= name + ' ' + lastName %></span> </figcaption>
+                    </figure>
+                <form id="edit-profile" action="/users/<%=id%>?_method=PATCH" enctype="multipart/form-data" method="POST">
+                    
+                    <label for="imgUploader"> change image</label>
+                    <input id = "imgUploader" accept=".jpg, .png, .jpeg" name="imgUploader" type="file">
+                    <button type="submit">Submit</button>
+                </form>
+            <% }else { %>  
+                <% if (profile =="defaultImage.png") { %>
+                   
+                    <div><a href="/users/<%=id%>/edit">Add a profile image</a></div>
+                <% } else { %>
+                   
+                    <div><a href="/users/<%=id%>/edit">Edit</a></div>
+                <% } %> 
+                <figure id="image">
+                    <img src = "<%='/media/uploads/' + profile  %>" alt="">
+                    <figcaption><span id = "name"><%= name + ' ' + lastName %></span> </figcaption>
+                </figure>
+            <% } %> 
         </section>
         <section id="friends">
 
@@ -70,7 +95,7 @@
                         for (item of data){
                             $("#users-container").append(
                                 '<div class="items">'+
-                                    '<img src ="../media/uploads/' + item.profile  +'" class="profil">'+
+                                    '<img src ="/media/uploads/' + item.profile  +'" class="profil">'+
                                     '<p class="usr-name">' + item.name + ' ' + item.lastName +' </p>'+
                                 '</div>'
                             );
@@ -88,8 +113,25 @@
 
             }            
         }, { threshold: [1] });
+        $('.fa-caret-down').toggle();
+
         await observer.observe(document.querySelector(".throbber-loader"));
-               
+        $('#drop-down').on('click',() => {
+                $('.fa-caret-down').toggle();
+                $('.fa-square-caret-down').toggle();                
+        })
+
+       observer = new IntersectionObserver(async function(entry) {
+	// isIntersecting is true when element and viewport are overlapping
+	// isIntersecting is false when element and viewport don't overlap
+            if(entry[0].isIntersecting === true) {
+                $("aside header").css('box-shadow',"none")
+            }else{
+                $("aside header").css('box-shadow',"4px 4px 2px #555")
+            }
+        }, { threshold: [1] });
+        observer.observe(document.querySelector(".items"))
+
     });
         
     </script>

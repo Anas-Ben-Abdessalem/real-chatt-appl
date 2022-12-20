@@ -48,6 +48,9 @@ body>header>* {
     font-size: 1.5rem;
     border: 2px solid var(--white);
     border-bottom:5px solid var(--white);
+    text-shadow: 2px 4px 2px var(--red),-4px -8px 2px var(--red);
+    user-select: none;
+
 }
 
 
@@ -64,9 +67,16 @@ body>header>* {
 }
 
 
-#logout {
+#drop-down {
     grid-column: 4/5;
+    border-radius: 50%;
+    width: 6vw;
+    height: 6vw;
+    min-height: 40px;
+    min-width: 40px;
+    margin: auto 10px;
 }
+
 
 #logout .fa-sharp{
     margin-left: 5px;
@@ -94,7 +104,8 @@ aside>header {
   background-color: inherit;
   right: 0;
   z-index: 2;
-  box-shadow: 4px 4px 5px #555 ;
+  border-bottom: 4px solid #fff;
+
 
   
 }
@@ -107,27 +118,7 @@ h1 {
 
 }
 
-h1::before {
-  content:'';
-  position: absolute;
-  left:15%;
-  bottom:-1px;
-  background: var(--white); 
-  height: 3px;
-  width: 70%;
-  z-index: 1;
-  box-shadow: 4px 4px 5px var(--red);
-}
-h1::after {
-  content:'';
-  
-  position: absolute;
-  left:0;
-  bottom:0;
-  background: var(--white); 
-  height: 1px;
-  width: 100%;
-}
+
 
 
 .items{
@@ -188,7 +179,8 @@ h1::after {
     background: var(--blue);
 }
 
-#image {
+
+#profile figure  {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -197,7 +189,7 @@ h1::after {
 }
 
 
-#image img { 
+#profile img { 
     display: flex;
     align-items: center;
     justify-content: center;
@@ -207,12 +199,46 @@ h1::after {
     border-radius: 50%;
 
 }
+#profile div {
+  text-align: center;
+  padding: 5px;
+}
 
 #loader {
     display: flex;
     padding: 5px;
     align-items: center;
     justify-content: center;
+}
+
+#edit-profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+#edit-profile input{
+  display: none;
+}
+
+#edit-profile button {
+  background-color: #888;
+  padding: 5px;
+  border: 2px  solid var(--white) ;
+  border-bottom:4px solid var(--white);
+  border-radius: 3px;
+}
+
+
+#edit-profile label{
+  background: var(--red);
+  padding: 5px;
+  margin: 5px;
+  border: 2px  solid var(--white) ;
+  border-bottom:4px solid var(--white);
+  border-radius: 3px;
 }
 
 /* Animations */
